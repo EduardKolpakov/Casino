@@ -1,0 +1,31 @@
+﻿<Page x:Class="Casino.Pages.Games"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Casino.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="Games" Background="AliceBlue">
+
+    <Grid>
+        <Rectangle x:Name="MenuGrid" HorizontalAlignment="Left" Height="720" Stroke="Black" VerticalAlignment="Center" Width="127" Fill="#FF5A009C"/>
+        <Grid HorizontalAlignment="Left" Height="720" VerticalAlignment="Center" Width="127">
+            <Button x:Name="MainBtn" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF5A009C" Click="MainBtn_Click">
+                <Image Source="/images/menu.png"/>
+            </Button>
+            <Button x:Name="GamesBtn" HorizontalAlignment="Center" Margin="0,188,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF9300FF">
+                <Image Source="/images/games.png"/>
+            </Button>
+            <Button x:Name="TransactionBtn" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF5A009C" Click="TransactionBtn_Click">
+                <Image Source="/images/card.png"/>
+            </Button>
+            <Button x:Name="StatisticsBtn" HorizontalAlignment="Center" Margin="0,458,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF5A009C" Click="StatisticsBtn_Click">
+                <Image Source="/images/statistics.png"/>
+            </Button>
+        </Grid>
+        <Button x:Name="BlackJackBtn" Content="BlackJack" HorizontalAlignment="Left" Height="124" Margin="348,0,0,0" VerticalAlignment="Center" Width="124" Click="BlackJackBtn_Click"/>
+        <Button x:Name="SlotsButton" Content="Slots" HorizontalAlignment="Center" Height="124" VerticalAlignment="Center" Width="124" Click="SlotsButton_Click"/>
+
+    </Grid>
+</Page>

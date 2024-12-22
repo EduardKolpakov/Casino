@@ -1,0 +1,34 @@
+﻿<Page x:Class="Casino.Pages.transactions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Casino.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="transactions" Background="AliceBlue">
+
+    <Grid>
+        <Rectangle x:Name="MenuGrid" HorizontalAlignment="Left" Height="720" Stroke="Black" VerticalAlignment="Center" Width="127" Fill="#FF5A009C"/>
+        <Grid HorizontalAlignment="Left" Height="720" VerticalAlignment="Center" Width="127">
+            <Button x:Name="MainBtn" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF5A009C" Click="MainBtn_Click">
+                <Image Source="/images/menu.png"/>
+            </Button>
+            <Button x:Name="GamesBtn" HorizontalAlignment="Center" Margin="0,188,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF5A009C" Click="GamesBtn_Click">
+                <Image Source="/images/games.png"/>
+            </Button>
+            <Button x:Name="TransactionBtn" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF9300FF">
+                <Image Source="/images/card.png"/>
+            </Button>
+            <Button x:Name="StatisticsBtn" HorizontalAlignment="Center" Margin="0,458,0,0" VerticalAlignment="Top" Height="100" Width="100" Background="#FF5A009C" Click="StatisticsBtn_Click">
+                <Image Source="/images/statistics.png"/>
+            </Button>
+        </Grid>
+        <Label x:Name="BalanceLbl" Content="Balance:" HorizontalAlignment="Center" Height="30" Margin="0,164,0,0" VerticalAlignment="Top" Width="218"/>
+        <TextBox x:Name="BalanceTxt" HorizontalAlignment="Center" Height="29" Margin="0,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
+        <Button x:Name="GetBtn" Content="Пополнить" HorizontalAlignment="Center" Height="31" Margin="0,312,0,0" VerticalAlignment="Top" Width="100" Click="GetBtn_Click"/>
+        <TextBox x:Name="CardTxt" HorizontalAlignment="Center" Height="29" Margin="0,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
+        <Button x:Name="OutBtn" Content="Вывести" HorizontalAlignment="Center" Height="31" Margin="0,360,0,0" VerticalAlignment="Top" Width="100" Click="OutBtn_Click"/>
+
+    </Grid>
+</Page>

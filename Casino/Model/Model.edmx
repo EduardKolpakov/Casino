@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище RPM_CasinoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BalanceHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="BalanceChange" Type="nvarchar" MaxLength="20" />
+          <Property Name="GameType" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="GamesHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bet" Type="int" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="TransactionHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="30" />
+          <Property Name="summ" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Balance" Type="int" />
+          <Property Name="Role" Type="nvarchar" MaxLength="25" />
+          <Property Name="TgUs" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_BalanceHistory_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="BalanceHistory" Type="Self.BalanceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BalanceHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GamesHistory_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="GamesHistory" Type="Self.GamesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GamesHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionHistory_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="TransactionHistory" Type="Self.TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RPM_CasinoModelContainer">
+          <EntitySet Name="BalanceHistory" EntityType="Self.BalanceHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GamesHistory" EntityType="Self.GamesHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionHistory" EntityType="Self.TransactionHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BalanceHistory_Users" Association="Self.FK_BalanceHistory_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BalanceHistory" EntitySet="BalanceHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GamesHistory_Users" Association="Self.FK_GamesHistory_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GamesHistory" EntitySet="GamesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHistory_Users" Association="Self.FK_TransactionHistory_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RPM_CasinoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BalanceHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="BalanceChange" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_BalanceHistory_Users" FromRole="BalanceHistory" ToRole="Users" />
+          <Property Name="GameType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GamesHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bet" Type="Int32" />
+          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_GamesHistory_Users" FromRole="GamesHistory" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Int32" />
+          <NavigationProperty Name="BalanceHistories" Relationship="Self.FK_BalanceHistory_Users" FromRole="Users" ToRole="BalanceHistory" />
+          <NavigationProperty Name="GamesHistories" Relationship="Self.FK_GamesHistory_Users" FromRole="Users" ToRole="GamesHistory" />
+          <NavigationProperty Name="TransactionHistories" Relationship="RPM_CasinoModel.FK_TransactionHistory_Users" FromRole="User" ToRole="TransactionHistory" />
+          <Property Name="Role" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="TgUs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_BalanceHistory_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="BalanceHistory" Type="Self.BalanceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BalanceHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GamesHistory_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="GamesHistory" Type="Self.GamesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GamesHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RPM_CasinoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BalanceHistories" EntityType="Self.BalanceHistory" />
+          <EntitySet Name="GamesHistories" EntityType="Self.GamesHistory" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_BalanceHistory_Users" Association="Self.FK_BalanceHistory_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BalanceHistory" EntitySet="BalanceHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GamesHistory_Users" Association="Self.FK_GamesHistory_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GamesHistory" EntitySet="GamesHistories" />
+          </AssociationSet>
+          <EntitySet Name="TransactionHistories" EntityType="RPM_CasinoModel.TransactionHistory" />
+          <AssociationSet Name="FK_TransactionHistory_Users" Association="RPM_CasinoModel.FK_TransactionHistory_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TransactionHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="summ" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="RPM_CasinoModel.FK_TransactionHistory_Users" FromRole="TransactionHistory" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_TransactionHistory_Users">
+          <End Type="RPM_CasinoModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="RPM_CasinoModel.TransactionHistory" Role="TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RPM_CasinoModelContainer" CdmEntityContainer="RPM_CasinoEntities">
+          <EntitySetMapping Name="BalanceHistories">
+            <EntityTypeMapping TypeName="RPM_CasinoModel.BalanceHistory">
+              <MappingFragment StoreEntitySet="BalanceHistory">
+                <ScalarProperty Name="GameType" ColumnName="GameType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BalanceChange" ColumnName="BalanceChange" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GamesHistories">
+            <EntityTypeMapping TypeName="RPM_CasinoModel.GamesHistory">
+              <MappingFragment StoreEntitySet="GamesHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GameName" ColumnName="GameName" />
+                <ScalarProperty Name="Bet" ColumnName="Bet" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RPM_CasinoModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="TgUs" ColumnName="TgUs" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionHistories">
+            <EntityTypeMapping TypeName="RPM_CasinoModel.TransactionHistory">
+              <MappingFragment StoreEntitySet="TransactionHistory">
+                <ScalarProperty Name="summ" ColumnName="summ" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
